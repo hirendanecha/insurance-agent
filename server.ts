@@ -153,7 +153,7 @@ export function app(): express.Express {
           const pdhtml = document.createElement('div');
           pdhtml.innerHTML = post?.postdescription || post?.metadescription;
           const talent = {
-            name: post?.title || post?.albumname || 'Healing.Tube Post',
+            name: post?.title || post?.albumname || 'InsuranceAgent.tube Post',
             description: pdhtml?.textContent || 'Post content',
             image: post?.thumbfilename || post?.metaimage || post?.imageUrl || 'https://www.insuranceagent.tube/assets/images/profile-cover.png',
           };
