@@ -23,7 +23,7 @@ export class NotificationsComponent {
     private socketService: SocketService
   ) { 
     const data = {
-      title: 'HealingTube Notification',
+      title: 'InsuranceAgent.tube Notification',
       url: `${window.location.href}`,
       description: '',
     };

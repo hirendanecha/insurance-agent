@@ -69,7 +69,7 @@ export class SeoService {
     }
 
     if (!tagValue.image) {
-      tagValue.image = 'https://freedom.buzz/assets/images/banner/Healing-Tube-Logo.png';
+      tagValue.image = 'https://www.insuranceagent.tube/assets/images/profile-cover.png';
     }
 
     this.meta.updateTag({

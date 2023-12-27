@@ -25,15 +25,12 @@ import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/@shared/services/seo.service';
 import { AddCommunityModalComponent } from '../communities/add-community-modal/add-community-modal.component';
 import { AddFreedomPageComponent } from '../freedom-page/add-page-modal/add-page-modal.component';
-import { Meta } from '@angular/platform-browser';
-// import { MetafrenzyService } from 'ngx-metafrenzy';
 import { isPlatformBrowser } from '@angular/common';
 import { Howl } from 'howler';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  // providers: [MetafrenzyService]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   postMessageInputValue: string = '';
@@ -98,7 +95,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isNavigationEnd = true;
       });
       const data = {
-        title: 'HealingTube',
+        title: 'InsuranceAgent.tube',
         url: `${window.location.href}`,
       };
       this.seoService.updateSeoMetaData(data);
@@ -211,20 +208,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               description: details.CommunityDescription,
               image: details?.coverImg,
             };
-            // this.metafrenzyService.setTitle(data.title);
-            // this.metafrenzyService.setMetaTag('og:title', data.title);
-            // this.metafrenzyService.setMetaTag('og:description', data.description);
-            // this.metafrenzyService.setMetaTag('og:url', data.url);
-            // this.metafrenzyService.setMetaTag('og:image', data.image);
-            // this.metafrenzyService.setMetaTag("og:site_name", 'Freedom.Buzz');
-            // this.metafrenzyService.setOpenGraph({
-            //   title: data.title,
-            //   //description: post.postToProfileIdName === '' ? post.profileName: post.postToProfileIdName,
-            //   description: data.description,
-            //   url: data.url,
-            //   image: data.image,
-            //   site_name: 'Freedom.Buzz'
-            // });
             this.seoService.updateSeoMetaData(data);
 
             if (details?.memberList?.length > 0) {
@@ -419,7 +402,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     modalRef.result.then((res) => {
       if (res === 'success') {
         if (data.pageType === 'community') {
-          this.router.navigate(['health-practitioner']);
+          this.router.navigate(['insurance-agents']);
         } else {
           this.router.navigate(['pages']);
         }
@@ -504,8 +487,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
                 // this.getCommunityDetailsBySlug();
                 this.router.navigate([
                   `${this.communityDetails.pageType === 'community'
-                    ? 'health-practitioner'
-                    : 'pages'
+                    ? 'insurance-agents'
+                    : 'insurance-products'
                   }`,
                 ]);
               }
@@ -563,7 +546,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     modalRef.componentInstance.title = `Warning message`;
     modalRef.componentInstance.confirmButtonLabel = 'Ok';
     modalRef.componentInstance.cancelButtonLabel = 'Cancel';
-    modalRef.componentInstance.message = `Videos on HealingTube home are limited to 2 Minutes!
+    modalRef.componentInstance.message = `Videos on InsuranceAgent.tube home are limited to 2 Minutes!
     Videos must be a mp4 format`;
     modalRef.result.then((res) => {
       if (res === 'success') {
