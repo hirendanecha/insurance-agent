@@ -84,18 +84,18 @@ export function app(): express.Express {
         }
         const params = req.params[0];
         var seo: any = {
-          title: 'Healing Tube',
+          title: 'InsuranceAgent.tube',
           description:
-            'Private video consultations with Naturopathic Doctors and Holistic Healers from around the world. Social Discussion on how to heal various ailments.',
+            'Talk face-to-face with insurance agentsworldwide. Receive and discuss quoteson most any type of insurance.',
           image:
-            'https://www.healing.tube/assets/images/Ht-Profile-pic-default.png',
-          site: 'https://www.healing.tube/',
-          url: 'https://www.healing.tube' + params,
-          keywords: 'HealingTube',
+            'https://www.insuranceagent.tube/assets/images/profile-cover.png',
+          site: 'https://www.insuranceagent.tube/',
+          url: 'https://www.insuranceagent.tube' + params,
+          keywords: 'InsuranceAgent.tube',
         };
         if (
-          params.indexOf('communities/') > -1 ||
-          params.indexOf('pages/') > -1
+          params.indexOf('insurance-agents/') > -1 ||
+          params.indexOf('insurance-products/') > -1
         ) {
           let id = params.split('/');
           id = id[id.length - 1];
@@ -155,7 +155,7 @@ export function app(): express.Express {
           const talent = {
             name: post?.title || post?.albumname || 'Healing.Tube Post',
             description: pdhtml?.textContent || 'Post content',
-            image: post?.thumbfilename || post?.metaimage || post?.imageUrl || 'https://www.healing.tube/assets/images/Ht-Profile-pic-default.png',
+            image: post?.thumbfilename || post?.metaimage || post?.imageUrl || 'https://www.insuranceagent.tube/assets/images/profile-cover.png',
           };
           seo.title = talent.name;
           seo.description = strip_html_tags(talent.description);
@@ -170,7 +170,7 @@ export function app(): express.Express {
 
           console.log('group===>', group);
           const talent = {
-            name: `HealingTube Research ${group?.PageTitle}`,
+            name: `InsuranceAgent Research ${group?.PageTitle}`,
             description: group?.PageDescription,
             image: group?.CoverPicName || group?.ProfilePicName
           };

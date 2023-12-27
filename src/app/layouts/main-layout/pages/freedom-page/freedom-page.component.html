@@ -1,6 +1,6 @@
 <div class="mb-5 d-flex gap-3 justify-content-between">
   <div class="d-flex flex-column pt-3">
-    <h6 class="d-block d-xl-none text-start">Health Topics</h6>
+    <h6 class="d-block d-xl-none text-start">Insurance Products</h6>
 
     <ul
       ngbNav
@@ -12,21 +12,21 @@
       <li ngbNavItem="my">
         <button ngbNavLink class="d-flex gap-1">
           My
-          <div class="d-none d-xl-block">Topics</div>
+          <div class="d-none d-xl-block">Products</div>
         </button>
       </li>
 
       <li ngbNavItem="joined">
         <button ngbNavLink class="d-flex gap-1">
           Joined
-          <div class="d-none d-xl-block">Topics</div>
+          <div class="d-none d-xl-block">Products</div>
         </button>
       </li>
 
       <li ngbNavItem="local">
         <button ngbNavLink class="d-flex gap-1">
           All
-          <div class="d-none d-xl-block">Topics</div>
+          <div class="d-none d-xl-block">Products</div>
         </button>
       </li>
     </ul>
@@ -34,11 +34,11 @@
 
   <div class="btn-item text-center">
     <button
-      class="btn btn-sm btn-primary gap-1 d-flex align-items-center m-auto mt-1"
+      class="btn btn-sm cmn-btn gap-1 d-flex align-items-center m-auto mt-1"
       (click)="createCommunity()"
     >
     <fa-icon class="c-icon-color" [icon]="['fas', 'plus']" />
-      Create <div class="d-none d-sm-block">Health</div><div class="d-none d-xl-block">Topics</div>
+      Create <div class="d-none d-sm-block">Insurance</div><div class="d-none d-xl-block">Products</div>
     </button>
   </div>
 </div>
@@ -58,7 +58,7 @@
     <app-inline-loader *ngIf="isPageLoader" />
 
     <ng-container *ngIf="!isPageLoader">
-      <span>No Page found</span>
+      <span>No Product found</span>
     </ng-container>
   </ng-container>
 </div>

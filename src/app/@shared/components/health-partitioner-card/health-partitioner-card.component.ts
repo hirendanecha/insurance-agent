@@ -29,12 +29,12 @@ export class HealthPraatitionerCardComponent {
 
   goToCommunityDetailPage(): void {
     if (this.community.pageType === 'page') {
-      this.router.navigate(['pages', this.community?.slug]);
+      this.router.navigate(['insurance-products', this.community?.slug]);
     } else {
       if (this.community?.isApprove === 'Y') {
-        this.router.navigate(['health-practitioner']);
+        this.router.navigate(['insurance-agents']);
       } else {
-        this.toastService.danger('This community not approve yet.');
+        this.toastService.danger('This Insurance Agents not approve yet.');
       }
     }
   }
