@@ -21,7 +21,7 @@ const routes: Routes = [
    
   // },
   {
-    path: 'pages/:name',
+    path: 'insurance-products/:name',
     component: HomeComponent,
     canActivate: mapToCanActivate([AuthenticationGuard]),
   },
