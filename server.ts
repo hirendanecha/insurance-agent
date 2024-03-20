@@ -86,7 +86,7 @@ export function app(): express.Express {
         var seo: any = {
           title: 'InsuranceAgent.tube',
           description:
-            'Talk face-to-face with insurance agentsworldwide. Receive and discuss quoteson most any type of insurance.',
+            'Talk face-to-face with insurance agents worldwide. Receive and discuss quotes on most any type of insurance.',
           image:
             'https://www.insuranceagent.tube/assets/images/profile-cover.png',
           site: 'https://www.insuranceagent.tube/',
