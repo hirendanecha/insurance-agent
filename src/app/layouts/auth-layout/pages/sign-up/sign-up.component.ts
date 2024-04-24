@@ -41,6 +41,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   @ViewChild('zipCode') zipCode: ElementRef;
   captchaToken = '';
+  passwordHidden: boolean = true;
   registerForm = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -144,6 +145,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       this.spinner.hide();
       this.creatProfile(this.registerForm.value);
     }
+  }
+  togglePasswordVisibility(passwordInput: HTMLInputElement) {
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    this.passwordHidden = !this.passwordHidden;
   }
 
   save() {
