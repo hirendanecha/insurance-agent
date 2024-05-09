@@ -10,6 +10,9 @@
     font-size: min(max(25px, 2vw), 35px);
     font-weight: 600;
   }
+  .landing-text{
+    text-transform: none;
+  }
 
   .custom-height {
     background-image: url(/assets/images/landingpage/Insurance-Agent-Home.jpg);
