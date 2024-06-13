@@ -89,6 +89,11 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
   ) {
     this.userId = window.sessionStorage.user_id;
     this.profileId = localStorage.getItem('profileId');
+    const data = {
+      title: 'Insurance.agents',
+      url: `${window.location.href}`,
+      description: '',
+    };
   }
 
   ngOnInit(): void {

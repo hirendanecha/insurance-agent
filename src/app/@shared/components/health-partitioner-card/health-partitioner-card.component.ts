@@ -30,9 +30,9 @@ export class HealthPraatitionerCardComponent {
   goToCommunityDetailPage(): void {
     if (this.community.pageType === 'page') {
       this.router.navigate(['insurance-products', this.community?.slug]);
-    } else {
+    } else {  
       if (this.community?.isApprove === 'Y') {
-        this.router.navigate(['insurance-agents']);
+        this.router.navigate([`insurance-agents/details/${this.community?.slug}`]);
       } else {
         this.toastService.danger('This Insurance Agents not approve yet.');
       }

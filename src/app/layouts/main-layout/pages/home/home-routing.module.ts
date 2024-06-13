@@ -14,12 +14,12 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-  // {
-  //   path: 'communities/:name',
-  //   component: HomeComponent,
-  //   canActivate: mapToCanActivate([AuthenticationGuard]),
+  {
+    path: 'insurance-agents/details/:name',
+    component: HomeComponent,
+    canActivate: mapToCanActivate([AuthenticationGuard]),
    
-  // },
+  },
   {
     path: 'insurance-products/:name',
     component: HomeComponent,
