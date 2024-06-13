@@ -57,9 +57,13 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
   selectedValues: number[] = [];
   selectedAreaValues: number[] = [];
 
+  applyAs: any[] = ['Insurance Company', 'Insurance Agent'];
+  selectedApplication: string = 'Insurance Company';
+
   communityForm = new FormGroup({
     profileId: new FormControl(),
-    CommunityName: new FormControl(''),
+    CommunityName: new FormControl('', [Validators.required]),
+    AgentName: new FormControl(''),
     CommunityDescription: new FormControl(''),
     slug: new FormControl('', [Validators.required]),
     pageType: new FormControl('community', [Validators.required]),
@@ -171,11 +175,14 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
+    console.log(this.communityForm.value);
+    
     if (!this.data.Id) {
+      // formData['areas'] = this.selectedAreaValues;
       this.spinner.show();
       const formData = this.communityForm.value;
       formData['emphasis'] = this.selectedValues;
-      formData['areas'] = this.selectedAreaValues;
+      formData['applicationType'] = this.selectedApplication;
       if (this.communityForm.valid) {
         this.communityService.createCommunity(formData).subscribe({
           next: (res: any) => {
@@ -184,7 +191,7 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
               this.submitted = true;
               this.createCommunityAdmin(res.data);
               this.toastService.success(
-                'Your Health Practitioner will be approved within 24 hours!'
+                'Your Company will be approved within 24 hours!'
               );
               this.activeModal.close('success');
               this.router.navigate(['/insurance-agents']);
@@ -192,7 +199,7 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
           },
           error: (err) => {
             this.toastService.danger(
-              'Please change practitioner. this practitioner name already in use.'
+              'Please change company name. this company name already in use.'
             );
             this.spinner.hide();
           },
@@ -262,12 +269,12 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
   getAllCountries() {
     this.spinner.show();
 
+    this.getAllState(this.defaultCountry)
     this.customerService.getCountriesData().subscribe({
       next: (result) => {
         this.spinner.hide();
         this.allCountryData = result;
         this.communityForm.get('Zip').enable();
-        this.getAllState(this.defaultCountry)
       },
       error: (error) => {
         this.spinner.hide();
@@ -338,7 +345,7 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
   getCategories() {
     this.communityService.getCategories().subscribe({
       next: (res) => {
-        this.practitionerArea = res.area;
+        // this.practitionerArea = res.area;
         this.practitionerEmphasis = res.emphasis;
       },
       error: (error) => {
@@ -369,14 +376,22 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clearForm(){
-    this.router.navigate(['/insurance-agents'])
+  clearForm() {
+    if (this.data.Id) {
+      this.activeModal.close();
+    } else {
+      this.router.navigate(['/insurance-agents'])
+    }
   }
-
+    
   convertToUppercase(event: any) {
     const inputElement = event.target as HTMLInputElement;
     let inputValue = inputElement.value;   
     inputValue = inputValue.replace(/\s/g, '');
     inputElement.value = inputValue.toUpperCase();
+  }
+
+  applicationChange(application: string) {
+    this.selectedApplication = application;
   }
 }

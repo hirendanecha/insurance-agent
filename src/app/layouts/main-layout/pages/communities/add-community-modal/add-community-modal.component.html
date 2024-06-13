@@ -16,15 +16,45 @@
       [formGroup]="communityForm"
       (ngSubmit)="uploadImgAndSubmit()"
     >
+    <div class="d-flex gap-sm-4 mb-3 flex-column flex-sm-row">
+      <div *ngFor="let application of applyAs">
+        <div class="form-check d-flex align-items-center">
+          <input
+            class="form-check-input"
+            type="radio"
+            [value]="application"
+            id="modality{{ application }}"
+            (change)="applicationChange(application)"
+            [checked]="application === selectedApplication"
+          />
+          <label class="form-check-label ms-2 text-nowrap" for="modality{{ application }}">
+            {{ application }}
+          </label>
+        </div>
+      </div>
+    </div>
       <div class="col-12 mb-5">
         <label class="form-label d-flex"
-          >Agent Name<span class="text-danger">*</span></label
+          >Company Name<span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="input-area"
           name="cname"
           formControlName="CommunityName"
+          placeholder="Enter your Company name"
+          (keyup)="onCommunityNameChange()"
+        />
+      </div>
+      <div class="col-12 mb-5">
+        <label class="form-label d-flex"
+          >Agent Name</label
+        >
+        <input
+          type="text"
+          class="input-area"
+          name="cname"
+          formControlName="AgentName"
           placeholder="Enter your name"
           (keyup)="onCommunityNameChange()"
         />
@@ -86,10 +116,10 @@
           >
           <select
           id="State"
-          required
           name="State"
           class="input-area w-100"
-          [(ngModel)]="selectedState"
+          formControlName="State"
+          required
         >
           <option [value]="item.state" *ngFor="let item of allStateData">
             {{ item.state }}
@@ -198,7 +228,7 @@
   </div>
   
   <div class="d-flex flex-column mt-4">
-    <h4>Emphasis of Practice</h4>
+    <h4>Types of Insurance you provide services:</h4>
     <div class="container">
       <div class="row">
         <div *ngFor="let emphasis of practitionerEmphasis" class="col-md-6 col-lg-3">
@@ -222,7 +252,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex flex-column mt-6">
+  <!-- <div class="d-flex flex-column mt-6">
     <h4>Areas of Practice</h4>
     <div class="container">
       <div class="row">
@@ -246,7 +276,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <div class="modal-footer justify-content-end gap-3 border-0 mt-10">
     <button
