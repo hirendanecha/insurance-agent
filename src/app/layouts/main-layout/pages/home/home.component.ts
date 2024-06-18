@@ -503,7 +503,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       data.link2 = this.sharedService?.advertizementLink[1]?.url;
     }
     modalRef.componentInstance.title = `Edit ${
-      data.pageType === 'community' ? 'Dealerships' : 'Page'
+      data.pageType === 'community' ? 'Insurance' : 'Page'
     } Details`;
     modalRef.componentInstance.cancelButtonLabel = 'Cancel';
     modalRef.componentInstance.confirmButtonLabel = 'Save';
@@ -512,7 +512,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     modalRef.result.then((res) => {
       if (res === 'success') {
         if (data.pageType === 'community') {
-          this.router.navigate(['dealerships']);
+          this.router.navigate(['insurance-agents']);
         } else {
           this.router.navigate(['pages']);
         }
@@ -549,13 +549,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const modalRef = this.modalService.open(ConfirmationModalComponent, {
       centered: true,
     });
-    modalRef.componentInstance.title = `Leave ${this.communityDetails.pageType === "community" ? "Dealerships" : "page"}`;
+    modalRef.componentInstance.title = `Leave ${this.communityDetails.pageType === "community" ? "Insurance" : "page"}`;
     modalRef.componentInstance.confirmButtonLabel = id ? 'Remove' : 'Leave';
     modalRef.componentInstance.cancelButtonLabel = 'Cancel';
     if (id) {
-      modalRef.componentInstance.message = `Are you sure want to remove this member from ${this.communityDetails.pageType === "community" ? "Dealerships" : "page"}?`;
+      modalRef.componentInstance.message = `Are you sure want to remove this member from ${this.communityDetails.pageType === "community" ? "Insurance" : "page"}?`;
     } else {
-      modalRef.componentInstance.message = `Are you sure want to Leave from this ${this.communityDetails.pageType === "community" ? "Dealerships" : "page"}?`;
+      modalRef.componentInstance.message = `Are you sure want to Leave from this ${this.communityDetails.pageType === "community" ? "Insurance" : "page"}?`;
     }
     modalRef.result.then((res) => {
       if (res === 'success') {
@@ -601,7 +601,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.router.navigate([
                   `${
                     this.communityDetails.pageType === 'community'
-                      ? 'dealerships'
+                      ? 'insurance-agents'
                       : 'pages'
                   }`,
                 ]);
