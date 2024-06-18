@@ -219,8 +219,8 @@ export class AppointmentModalComponent implements AfterViewInit {
       appointment: {
         appointmentDateTime: appointmentDateTime,
         profileId: this.data.profileId,
-        veterinarianProfileId: this.data.practitionerProfileId,
-        veterinarianName: this.data.practitionerName,
+        insuranceProfileId: this.data.practitionerProfileId,
+        insuranceName: this.data.practitionerName,
       },
       topics: topics,
       slug: this.data.slug,
