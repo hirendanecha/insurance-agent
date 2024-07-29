@@ -54,6 +54,7 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
 
   practitionerArea: any = [];
   practitionerEmphasis: any = [];
+  removeValues: number[] = [];
   selectedValues: number[] = [];
   selectedAreaValues: number[] = [];
 
@@ -120,7 +121,7 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
       this.communityForm.get('State').enable();
       this.communityForm.get('City').enable();
       this.communityForm.get('County').enable();
-      console.log(this.data);
+      this.selectedValues = this.data.emphasis.map((emphasis) => emphasis.eId);
     }
   }
 
@@ -237,6 +238,43 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
           },
         });
     }
+    if (this.communityForm.valid && this.data.Id) {
+      this.editCommunityInterests();
+    }
+  }
+  editCommunityInterests() {
+    const existingEmphasis = this.data.emphasis.map((emphasis) => emphasis.eId);
+    const existingAreas = this.data.areas.map((area) => area.aId);
+    const filteredEmphasis = this.selectedValues.filter((ele) =>
+      !existingEmphasis.includes(ele) ? ele : null
+    );
+    const filteredAreas = this.selectedAreaValues.filter((ele) =>
+      !existingAreas.includes(ele) ? ele : null
+    );
+
+    const formData = this.communityForm.value;
+    formData['emphasis'] = filteredEmphasis;
+    formData['areas'] = filteredAreas;
+    formData['removeEmphasisList'] = this.removeValues;
+    // formData['removeAreasList'] = this.removeAreaValues;
+    this.communityService.editCommunity(formData, this.data.Id).subscribe({
+      next: (res: any) => {
+        this.spinner.hide();
+        if (!res.error) {
+          this.submitted = true;
+          this.toastService.success(
+            'Your  Insurance Agents edit successfully!'
+          );
+          this.activeModal.close('success');
+        }
+      },
+      error: (err) => {
+        this.toastService.danger(
+          'Please change Insurance Agents. this Insurance Agents name already in use.'
+        );
+        this.spinner.hide();
+      },
+    });
   }
 
   createCommunityAdmin(id): void {
@@ -364,10 +402,14 @@ export class AddCommunityModalComponent implements OnInit, AfterViewInit {
     const isChecked = event.target.checked;
     if (isChecked) {
       this.selectedValues.push(emphasis.eId);
+      this.removeValues.splice(emphasis.eId);
     } else {
       this.selectedValues = this.selectedValues.filter(
         (id) => id !== emphasis.eId
       );
+      if (!this.removeValues.includes(emphasis.eId)) {
+        this.removeValues.push(emphasis.eId);
+      }
     }
   }
   onAreaboxChange(event: any, area: any): void {
